@@ -1,0 +1,63 @@
+<!-- Define a function to render the payment -->
+<% function renderPayment(payment) { %>
+    <div class="item-details">
+      <article>
+        <h2> Amount: <%= payment.amount %></h2>
+        <div><%= payment.method %></div>
+        <p>
+          <strong>Status:</strong> <%= payment.status %></br>
+        
+        </p>
+    
+        <!-- Update button -->
+        <form
+          class="action-form"
+          method="GET"
+          action="/single-payment/update/<%= payment._id %>"
+        >
+          <button type="submit" class="update">update</button>
+        </form>
+    
+        <!-- Delete button -->
+        <form
+          class="action-form"
+          method="POST"
+          action="/single-payment/<%= payment._id %>?_method=DELETE"
+        >
+          <button type="submit">delete</button>
+        </form>
+      </article>
+    </div>
+    <% } %>
+    
+   
+    
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Single Payment</title>
+        <link rel="stylesheet" href="/css/styles.css" />
+        <!-- Link to external stylesheet -->
+      </head>
+      <body>
+        <nav class="navbar">
+          <h1>My Payments</h1>
+          <div class="links">
+            <a href="/">Home</a>
+            <a class="new-item-link" href="/addpayment">New Payment</a>
+          </div>
+        </nav>
+    
+        <div class="content">
+          <div class="home">
+            <div class="item-list">
+              <% if (payment) { %> <%= renderPayment(payment) %> <% } else { %>
+              <p>No payment found.</p>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      </body>
+    </html>

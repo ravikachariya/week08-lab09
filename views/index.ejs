@@ -1,0 +1,43 @@
+<!-- Define a function to render each payment -->
+<% function renderPayment(payment) { %>
+    <div class="item-preview">
+      <a href="/single-payment/<%= payment._id %>">
+        <h2>Amount: <%= payment.amount %></h2>
+        <h4>Method: <%= payment.method %></h4>
+        <h4>Status: <%= payment.status %></h4>
+      </a>
+    </div>
+  <% } %>
+  
+  
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Payments</title>
+      <link rel="stylesheet" href="/css/styles.css" />
+      <!-- Link to external stylesheet -->
+    </head>
+    <body>
+      <nav class="navbar">
+        <h1>My Payments</h1>
+        <div class="links">
+          <a href="/">Home</a
+          ><a class="new-item-link" href="/addpayment">New Payment</a>
+        </div>
+      </nav>
+  
+      <div class="content">
+        <div class="home">
+          <div class="item-list">
+            <% if (payments.length > 0) { %>
+            <!-- Call the renderPayment function for each payment -->
+            <% payments.forEach(renderPayment); %> <% } else { %>
+            <p>No payments found.</p>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </body>
+  </html>
